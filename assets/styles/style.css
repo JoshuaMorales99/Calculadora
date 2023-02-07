@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Ubuntu:wght@300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: black;
+    color: white;
+    text-shadow: 2px 2px 3px black;
+}
+
+.encabezado {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    line-height: 1.5em;
+}
+
+.encabezado .encabezado-contenido {
+    width: 280px;
+    margin: 20px 15px;
+    padding: 30px;
+    letter-spacing: 5px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 3px 1px white;
+    background-color: #202124;
+}
+
+.encabezado .encabezado-contenido .titulo {
+    margin: 10px 0px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 30px;
+}
+
+.encabezado .encabezado-contenido .texto {
+    border-top: 2px groove silver;
+    margin-top: 25px;
+    padding: 20px 0px 0px;
+    color: red;
+}
+
+.encabezado .encabezado-calculadoras {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.encabezado .encabezado-calculadoras .tipo-calculadora {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 10px;
+    height: 120px;
+    width: 120px;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 2px white;
+    background-color: #202124;
+}
+
+.encabezado .encabezado-calculadoras .tipo-calculadora .texto-calculadora {
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    color: white;
+}
+
+.encabezado .encabezado-calculadoras .tipo-calculadora .logo-calculadora {
+    margin: 10px 5px;
+    font-size: 28px;
+}
+
+.encabezado .encabezado-calculadoras .tipo-calculadora:hover {
+    bottom: 5px;
+    box-shadow: 0px 2px 5px 4px white;
+    background-color: red;
+}
