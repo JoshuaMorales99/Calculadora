@@ -114,6 +114,11 @@ body {
     grid-row-start: span 2;
 }
 
+.pad-numerico #btn-0 {
+    width: auto;
+    grid-column-start: span 2;
+}
+
 .pad-opciones #btn-AC, .pad-opciones #btn-DEL {
     font-weight: bold;
     background-color: tomato;
