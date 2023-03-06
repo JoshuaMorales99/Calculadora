@@ -1,9 +1,8 @@
-const estadoPantalla = document.getElementById('pantalla'); // Atajo
-let resultado = 0; // Para almacenar el resultado de las operaciones
-let operadorGuardado = '+'; // Para hacer la cuentaPrevia con el operador
+const estadoPantalla = document.getElementById('pantalla'); // Atajo para el estado de la pantalla
+let resultado = 0; // Almacenar el resultado de las operaciones
+let operadorPrevio = '+'; // Almacenar el operador pervio para luego hacer la operación previa con el operador previo
 let caracterPrevio = '0'; // Para controlar el último caracter ingresado
-
-//let valorNumerico = 0;                                            ANTIGUA OPCIÓN. BORRAR LUEGO
+/* ======================================================================================================================================= */
 
 function esNumero(valor) {
     // Verificamos, con una expresion regular, si 'valor' es un posible caracter numerico o punto (.)
@@ -18,36 +17,32 @@ function esOpcion(valor) {
     return /[±◀]|AC/.test(valor);
 }
 
-function hacerCuentaPrevia() {
-    switch (operadorGuardado) {
+function hacerCuentaCon(operador) {
+    switch (operador) {
         case '+':
-            //resultado += parseFloat(valorNumerico, 10);           ANTIGUAS OPCIONES. BORRAR LUEGO
             resultado += parseFloat(estadoPantalla.innerText, 10);
         break;
 
         case '−':
-            //resultado -= parseFloat(valorNumerico, 10);
             resultado -= parseFloat(estadoPantalla.innerText, 10);
         break;
 
         case 'x':
-            //resultado *= parseFloat(valorNumerico, 10);
             resultado *= parseFloat(estadoPantalla.innerText, 10);
         break;
 
         case '÷':
-            //resultado /= parseFloat(valorNumerico, 10);
+            // VERIFICAR LUEGO DIVISION POR CERO (estadoPantalla.innerText != 0)
             resultado /= parseFloat(estadoPantalla.innerText, 10);
         break;
 
         case '%':
+            estadoPantalla.innerHTML = (parseFloat(estadoPantalla.innerText) * parseFloat(resultado)) / 100;
         break;
 
         case '√':
-        break;
-
-        default:
-            
+            // VERIFICAR LUEGO QUE RESULTADO SEA POSITIVO (estadoPantalla.innerText >= 0)
+            estadoPantalla.innerHTML = Math.sqrt(parseFloat(estadoPantalla.innerText, 10));
         break;
     }
 }
@@ -55,24 +50,19 @@ function hacerCuentaPrevia() {
 function operarNumero(operador) {
     // Verificamos que el caracterPrevio sea un numero
     if (esNumero(caracterPrevio)) {
-        /*                                                          ANTIGUA OPCIÓN, BORRAR LUEGO
-        Almacenamos el valor numerico ingresado
-        valorNumerico = estadoPantalla.innerText;
-        */
+        // Caso especial: Raíz
+        if (operador == '√') hacerCuentaCon(operador);
+        // Caso especial: Porcentaje
+        if (operador == '%') hacerCuentaCon(operador);
         
-        // Hacemos la cuenta con el signo previo
-        hacerCuentaPrevia();
-        // Reseteamos el valor numerico de la pantalla
-        estadoPantalla.innerHTML = 0;
+        // Hacemos la cuenta con el operador previo
+        hacerCuentaCon(operadorPrevio);
     }
 
     // Mostramos el resultado por pantalla
-    if(operador == '=') {
-        estadoPantalla.innerHTML = resultado;
-    }
-
+    if(operador == '=') estadoPantalla.innerHTML = resultado;
     // Almacenamos el valor del operador para luego hacer la operacion
-    operadorGuardado = operador;
+    operadorPrevio = operador;
     // Almacenamos el carácter para luego hacer verificación
     caracterPrevio = operador;
 
@@ -80,6 +70,8 @@ function operarNumero(operador) {
 }
 
 function agregarNumero(numero) {
+    // Reseteamos el valor numerico de la pantalla
+    if (esOperador(caracterPrevio)) estadoPantalla.innerHTML = 0;
     // Mostramos por pantalla los numeros que se van ingresando
     (estadoPantalla.textContent == '0' && numero != '.') ? estadoPantalla.innerHTML = numero : estadoPantalla.innerHTML += numero;
     // Almacenamos el carácter para luego hacer verificación
