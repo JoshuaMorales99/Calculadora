@@ -47,6 +47,28 @@ function hacerCuentaCon(operador) {
     }
 }
 
+function ejecutarOpcion(opcion) {
+    switch (opcion) {
+        case 'AC':
+            estadoPantalla.innerHTML = '0';
+            resultado = 0;
+            operadorPrevio = '+';
+            caracterPrevio = '0';
+        break;
+
+        case '◀':
+            
+        break;
+
+        case '±':
+            // Cambiamos el signo del numero
+            estadoPantalla.innerHTML *= (-1);
+            // PARA DEBUG
+            if (caracterPrevio == '=') resultado *= (-1);
+        break;
+    }
+}
+
 function operarNumero(operador) {
     // Verificamos que el caracterPrevio sea un numero
     if (esNumero(caracterPrevio)) {
@@ -73,14 +95,14 @@ function agregarNumero(numero) {
     // Reseteamos el valor numerico de la pantalla
     if (esOperador(caracterPrevio)) estadoPantalla.innerHTML = 0;
     // Mostramos por pantalla los numeros que se van ingresando
-    (estadoPantalla.textContent == '0' && numero != '.') ? estadoPantalla.innerHTML = numero : estadoPantalla.innerHTML += numero;
+    (estadoPantalla.innerText == '0' && numero != '.') ? estadoPantalla.innerHTML = numero : estadoPantalla.innerHTML += numero;
     // Almacenamos el carácter para luego hacer verificación
     caracterPrevio = numero;
 }
 
 function ejecutarInstruccion(valor) {
     // PARA DEBUG: Verificamos si la cuenta previa terminó
-    if(caracterPrevio == '=') estadoPantalla.innerHTML = '0';
+    // if(caracterPrevio == '=') estadoPantalla.innerHTML = '0';
 
     // Ejecutamos la instrucción correspondiente
     if (esNumero(valor)) {
@@ -91,7 +113,7 @@ function ejecutarInstruccion(valor) {
         operarNumero(valor);
     } else if(esOpcion(valor)) {
         // Es opción
-        console.log("Es una opción");
+        ejecutarOpcion(valor);
     } else {
         // No implementado
         console.log("Instrucción no implementada");
