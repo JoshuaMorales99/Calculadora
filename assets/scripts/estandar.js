@@ -42,7 +42,7 @@ function hacerCuentaCon(operador) {
 
         case '√':
             // VERIFICAR LUEGO QUE RESULTADO SEA POSITIVO (estadoPantalla.innerText >= 0)
-            estadoPantalla.innerHTML = Math.sqrt(parseFloat(estadoPantalla.innerText, 10));
+            estadoPantalla.innerHTML = Math.sqrt(estadoPantalla.innerText);
         break;
     }
 }
@@ -57,13 +57,17 @@ function ejecutarOpcion(opcion) {
         break;
 
         case '◀':
-            
+            // VERIFICAR LUEGO QUE SI SE BORRAN TODOS LOS DÍGITOS, ÉSTE QUEDE EN '0'
+            // Borramos el último número
+            estadoPantalla.innerHTML = estadoPantalla.innerText.slice(0, -1);
+            // PARA DEBUG: Caso especial
+            if (caracterPrevio == '=') resultado = resultado.toString().slice(0, -1);
         break;
 
         case '±':
             // Cambiamos el signo del numero
             estadoPantalla.innerHTML *= (-1);
-            // PARA DEBUG
+            // PARA DEBUG: Casi especial
             if (caracterPrevio == '=') resultado *= (-1);
         break;
     }
