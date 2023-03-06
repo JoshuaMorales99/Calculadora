@@ -14,7 +14,7 @@ function esOperador(valor) {
 }
 function esOpcion(valor) {
     // Verificamos, con una expresion regular, si 'valor' es una posible opción
-    return /[±◀]|AC/.test(valor);
+    return /[±←]|AC/.test(valor);
 }
 
 function hacerCuentaCon(operador) {
@@ -56,7 +56,7 @@ function ejecutarOpcion(opcion) {
             caracterPrevio = '0';
         break;
 
-        case '◀':
+        case '←':
             // VERIFICAR LUEGO QUE SI SE BORRAN TODOS LOS DÍGITOS, ÉSTE QUEDE EN '0'
             // Borramos el último número
             estadoPantalla.innerHTML = estadoPantalla.innerText.slice(0, -1);
