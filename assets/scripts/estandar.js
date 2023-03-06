@@ -61,7 +61,7 @@ function ejecutarOpcion(opcion) {
             // Borramos el último número
             estadoPantalla.innerHTML = estadoPantalla.innerText.slice(0, -1);
             // PARA DEBUG: Caso especial
-            if (caracterPrevio == '=') resultado = resultado.toString().slice(0, -1);
+            if (caracterPrevio == '=') resultado = parseFloat(resultado.toString().slice(0, -1), 10);
         break;
 
         case '±':
