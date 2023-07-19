@@ -98,10 +98,13 @@ function operarNumero(operador) {
 function agregarNumero(numero) {
     // Reseteamos el valor numerico de la pantalla
     if (esOperador(caracterPrevio)) estadoPantalla.innerHTML = 0;
-    // Mostramos por pantalla los numeros que se van ingresando
-    (estadoPantalla.innerText == '0' && numero != '.') ? estadoPantalla.innerHTML = numero : estadoPantalla.innerHTML += numero;
-    // Almacenamos el carácter para luego hacer verificación
-    caracterPrevio = numero;
+
+    if (estadoPantalla.innerText.length < 12) {
+        // Mostramos por pantalla los numeros que se van ingresando
+        (estadoPantalla.innerText == '0' && numero != '.') ? estadoPantalla.innerHTML = numero : estadoPantalla.innerHTML += numero;
+        // Almacenamos el carácter para luego hacer verificación
+        caracterPrevio = numero;
+    }
 }
 
 function ejecutarInstruccion(valor) {
